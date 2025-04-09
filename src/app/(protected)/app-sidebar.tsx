@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar";
 import useProject from "@/hooks/use-project";
 import { cn } from "@/lib/utils";
-import { log } from "console";
 import { Bot, CreditCard, LayoutDashboard, Plus, Presentation } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+// Define sidebar navigation items with their URLs and icons
 const items = [
     {
       title: "Dashboard",
@@ -34,14 +34,16 @@ const items = [
 ]
 
 
-
+//create a export Appsidebar function
 export function AppSidebar() {
     const pathname = usePathname()
     const {open} = useSidebar()
     const { projects, projectId, setProjectId } = useProject()
     return (
+        //import Sidebar from shadcn 
         <Sidebar collapsible="icon" variant="floating">
-            <SidebarHeader>
+            
+            <SidebarHeader> 
                 <div className="flex items-center gap-2">
                     <Image src='/logo.png' alt="logo" width={40} height={40} />
                     {open && (

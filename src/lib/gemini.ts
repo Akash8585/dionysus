@@ -46,7 +46,8 @@ It is given only as an example of appropriate comments.`,
 
 export async function summariseCode(doc:Document) {
     console.log("getting summary for", doc.metadata.source);
-    const code = doc.pageContent.slice(0, 10000)
+    try {
+        const code = doc.pageContent.slice(0, 10000)
     const response = await model.generateContent([
         `You are an intelligent senior software engineer who specialises in inboarding junior software engineer onto projects`,
         `You are onboarding a juniour software engineer and explaining to them the purpose of the ${doc.metadata.source} file
@@ -58,9 +59,13 @@ ${code}
     ])
 
     return response.response.text()
+    } catch (error) {
+        return ''
+    }
+    
 }
 
-export async function generateEmbeddings(summary:string) {
+export async function generateEmbedding(summary:string) {
     const model  = genAI.getGenerativeModel({
         model: 'text-embedding-004'
     })

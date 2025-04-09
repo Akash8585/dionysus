@@ -8,21 +8,26 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
+
+//specifying the structure and expected type of the following 
 type FormInput = {
     repoUrl : string
     projectName : string
-    githubToken?: string
+    githubToken?: string //optional
 }
 
 const CreatePage = () => {
+    // Initialize the form with useForm hook
     const {register,handleSubmit,reset} = useForm<FormInput>()
     const createProject = api.project.createProject.useMutation()
     const refetch = useRefetch()
 
+
+    //handle form submission
     function onSubmit(data: FormInput){
         createProject.mutate({
             githubUrl: data.repoUrl,
-            name: data.projectName,
+            name: data.projectName, 
             githubToken: data.githubToken,
         },{
             onSuccess: () => {
@@ -34,7 +39,7 @@ const CreatePage = () => {
                 toast.error('Failed to create project')
             }
         })
-        return true
+        return true //indicate the successfull handling of submit
     }
 
   return (

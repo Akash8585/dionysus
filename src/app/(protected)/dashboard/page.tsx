@@ -5,6 +5,11 @@ import { ExternalLink, Github } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import CommitLog from './commit-log'
+import AskQuestionCard from './ask-question-card'
+import MeetingCard from './meeting-card'
+import ArchiveButton from './archive-button'
+import InviteButton from './invite-button'
+import TeamMembers from './team-members'
 
 function DashboardPage() {
   const {project} = useProject()
@@ -30,16 +35,16 @@ function DashboardPage() {
         <div className='h-4'></div>
 
         <div className='flex items-center gap-4'>
-          TeamMembers
-          InviteButton
-          ArchieveButton
+          <TeamMembers/>
+          <InviteButton/>
+          <ArchiveButton/>
         </div>
       </div>
 
       <div className='mt-4'>
         <div className='grid grid-cols-1 gap-4 sm:grid-cols-5'>
-          AskQuestionCard
-          Meeting Card
+          <AskQuestionCard/>
+          <MeetingCard/>
         </div>
       </div>
 
